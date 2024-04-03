@@ -15,19 +15,23 @@ namespace TestProject
             double a, b;
             char op;
 
-            Console.WriteLine("Inserte el primer dígito:");
+            Console.WriteLine("Escribe el primer dígito:");
             a = Double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Inserte el segundo dígito:");
+            Console.WriteLine("Escribe el segundo dígito:");
             b = Double.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Tus numeros son: {a} y {b}");
+            Console.WriteLine("Escribe el operador (+,-,*,/):");
+            op = Char.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Los numeros son: {a} y {b}");
+            Console.WriteLine($"El operador elegido es: {op}");
             WaitForInput();
         }
 
         static void WaitForInput()
         {
-            Console.WriteLine("\nPrograma terminado,\npulse una tecla para cerrar...");
+            Console.WriteLine("\nPrograma terminado.\nPulse una tecla para cerrar...");
             Console.ReadLine();
         }
     }
