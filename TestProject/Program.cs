@@ -19,24 +19,57 @@ namespace TestProject
 
             double a, b;
             char op;
+            bool exit = false;
 
-            // Primer dígito
-            Console.WriteLine("Escribe el primer dígito:");
-            a = Double.Parse(Console.ReadLine());
+            while (!exit)
+            {
+                try
+                {
+                    // Primer dígito
+                    Console.WriteLine("\nEscribe el primer dígito:");
+                    a = Double.Parse(Console.ReadLine());
 
-            // Segundo dígito
-            Console.WriteLine("Escribe el segundo dígito:");
-            b = Double.Parse(Console.ReadLine());
+                    // Segundo dígito
+                    Console.WriteLine("Escribe el segundo dígito:");
+                    b = Double.Parse(Console.ReadLine());
 
-            // Operador
-            Console.WriteLine("Escribe el operador (+,-,*,/):");
-            op = Char.Parse(Console.ReadLine());
+                    // Operador
+                    Console.WriteLine("Escribe el operador (+,-,*,/):");
+                    op = Char.Parse(Console.ReadLine());
 
-            // Resultado
-            double resultado = Calculate(a, b, op);
-            Console.WriteLine($"\n{a} {op} {b} = {resultado}");
+                    // Realiza la operación
+                    double resultado = Calculate(a, b, op);
+                    Console.WriteLine($"\n{a} {op} {b} = {resultado}");
+
+                    // Salir
+                    Console.WriteLine("\n¿Desea salir del programa? (s/n (default):");
+                    char salir = Char.Parse(Console.ReadLine());
+
+                    switch (salir)
+                    {
+                        case 's':
+                            exit = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("\nError: Ingresa caracteres o números válidos.");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("\nError: Los números ingresados están fuera del rango válido.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"\nError inesperado: {ex.Message}");
+                }
+            }
 
             WaitForInput();
+
         }
 
         static void WaitForInput()
@@ -58,7 +91,7 @@ namespace TestProject
                 case '/':
                     return a / b;
                 default:
-                    return 0;
+                    throw new FormatException();
             }
         }
     }
