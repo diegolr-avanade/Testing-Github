@@ -33,8 +33,9 @@ namespace TestProject
             op = Char.Parse(Console.ReadLine());
 
             // Resultado
-            Console.WriteLine($"Los numeros son: {a} y {b}");
-            Console.WriteLine($"El operador elegido es: {op}");
+            double resultado = Calculate(a, b, op);
+            Console.WriteLine($"\n{a} {op} {b} = {resultado}");
+
             WaitForInput();
         }
 
@@ -42,6 +43,23 @@ namespace TestProject
         {
             Console.WriteLine("\nPrograma terminado.\nPulse una tecla para cerrar...");
             Console.ReadLine();
+        }
+
+        static double Calculate(double a, double b, char op)
+        {
+            switch (op)
+            {
+                case '+':
+                    return a + b;
+                case '-':
+                    return a - b;
+                case '*':
+                    return a * b;
+                case '/':
+                    return a / b;
+                default:
+                    return 0;
+            }
         }
     }
 }
